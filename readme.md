@@ -125,7 +125,7 @@ It's possible to do quite advanced documentation this way.
 Endpoint is a Phapi package used by the [Phapi Framework](https://github.com/phapi/phapi).
 
 ## License
-Serializer JSON is licensed under the MIT License - see the [license.md](https://github.com/phapi/serializer-json/blob/master/license.md) file for details
+Endpoint is licensed under the MIT License - see the [license.md](https://github.com/phapi/endpoint/blob/master/license.md) file for details
 
 ## Contribute
-Contribution, bug fixes etc are [always welcome](https://github.com/phapi/serializer-json/issues/new).
+Contribution, bug fixes etc are [always welcome](https://github.com/phapi/endpoint/issues/new).
