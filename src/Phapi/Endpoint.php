@@ -69,6 +69,30 @@ class Endpoint
     }
 
     /**
+     * Handle HEAD requests if a GET method is implemented
+     *
+     * @return array
+     * @throws MethodNotAllowed
+     */
+    public function head()
+    {
+        // Check if endpoint has a GET method
+        if (method_exists($this, 'get')) {
+            // Call GET. If the GET method adds any headers those will be present
+            // in the $this->response object. The GET method will return the body
+            // but since HEAD requests should only return headers we will NOT
+            // return the body.
+            $this->get();
+
+            // Return empty body
+            return [];
+        }
+
+        // Method GET isn't implemented so method (head) isn't allowed
+        throw new MethodNotAllowed();
+    }
+
+    /**
      * Options
      *
      * Responding to OPTIONS requests and checks for implemented

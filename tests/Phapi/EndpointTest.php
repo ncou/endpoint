@@ -14,7 +14,22 @@ use PHPUnit_Framework_TestCase as TestCase;
 class EndpointTest extends TestCase
 {
 
-    public function testEndpoint()
+    public function testEndpointHead()
+    {
+        $request = \Mockery::mock('Psr\Http\Message\ServerRequestInterface');
+        $response = \Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('withAddedHeader')->andReturnSelf();
+        $container = \Mockery::mock('Phapi\Contract\Di\Container');
+        $container->shouldReceive('offsetGet')->withArgs(['validHttpVerbs'])->andReturn(['GET', 'POST', 'OPTIONS']);
+        $container->shouldReceive('offsetGet')->withArgs(['contentTypes'])->andReturn(['application/json', 'text/json']);
+        $container->shouldReceive('offsetGet')->withArgs(['acceptTypes'])->andReturn(['application/json', 'text/json']);
+
+        $endpoint = new Blog($request, $response, $container);
+        $this->assertInstanceOf('Phapi\Endpoint', $endpoint);
+        $this->assertEquals([], $endpoint->head());
+    }
+
+    public function testEndpointOptions()
     {
         $expected = [
             'Content-Type' => [
