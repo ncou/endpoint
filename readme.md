@@ -95,7 +95,7 @@ public function get()
 ```
 
 ## Head requests
-All HEAD requests are automatically handled by Endpoints by checking if a <code>get()</code> method is implemented. If it is implemented, it will call that method and return the response. The middleware that sends the response to the client will hopefully just return the headers and not the body.
+All HEAD requests are automatically handled by Endpoints by checking if a <code>get()</code> method is implemented. If it is implemented, it will call the <code>get()</code> method so that all headers are created but it will ignore the body since HEAD requests should not return a body.
 
 ## Options requests
 Endpoint contains functionality for handling OPTIONS requests by looking at the implemented methods and PHPDoc to set headers and generate a body. The method returns supported content types, allowed methods as well as API documentation (if documentation exists).
