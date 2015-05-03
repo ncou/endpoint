@@ -29,6 +29,23 @@ class EndpointTest extends TestCase
         $this->assertEquals([], $endpoint->head());
     }
 
+    public function testEndpointHeadException()
+    {
+        $request = \Mockery::mock('Psr\Http\Message\ServerRequestInterface');
+        $response = \Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('withAddedHeader')->andReturnSelf();
+        $container = \Mockery::mock('Phapi\Contract\Di\Container');
+        $container->shouldReceive('offsetGet')->withArgs(['validHttpVerbs'])->andReturn(['GET', 'POST', 'OPTIONS']);
+        $container->shouldReceive('offsetGet')->withArgs(['contentTypes'])->andReturn(['application/json', 'text/json']);
+        $container->shouldReceive('offsetGet')->withArgs(['acceptTypes'])->andReturn(['application/json', 'text/json']);
+
+        $endpoint = \Mockery::mock('Phapi\Endpoint')->makePartial();
+
+        $this->assertInstanceOf('Phapi\Endpoint', $endpoint);
+        $this->setExpectedException('Phapi\Exception\MethodNotAllowed');
+        $this->assertEquals([], $endpoint->head());
+    }
+
     public function testEndpointOptions()
     {
         $expected = [
