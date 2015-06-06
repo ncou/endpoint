@@ -1,6 +1,13 @@
 # Endpoint
 Endpoint is a class that all endpoints created in Phapi should extend.
 
+## Installation
+The package is installed by default by the Phapi framework. Installing the package to use is separately can be done by using composer:
+
+```shell
+$ composer require phapi/endpoint:1.*
+```
+
 ## Basic usage
 An endpoint contains methods for handling requests. If an endpoint should support GET requests a <code>get()</code> method should exist. Each method must return the content that should be the response body sent to the client. The content must be formatted as an array. Serializers will then serialize the array to the correct format.
 
