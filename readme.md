@@ -1,5 +1,5 @@
 # Endpoint
-Endpoint is a class that all endpoints created in Phapi should extend.
+All successful requests (except when caching is used) will be routed and dispatched to an Endpoint that should handle the request and return a response with the requested content.
 
 ## Installation
 The package is installed by default by the Phapi framework. Installing the package to use is separately can be done by using composer:
@@ -9,7 +9,7 @@ $ composer require phapi/endpoint:1.*
 ```
 
 ## Basic usage
-An endpoint contains methods for handling requests. If an endpoint should support GET requests a <code>get()</code> method should exist. Each method must return the content that should be the response body sent to the client. The content must be formatted as an array. Serializers will then serialize the array to the correct format.
+An endpoint contains methods for handling requests. If an endpoint should support GET requests a <code>get()</code> method must exist. Each method must return the content that should be the response body that is sent to the client. The content must be formatted as an array. [Serializers](http://phapi.github.io/serializers/introduction/) will then serialize the array to the correct format.
 
 ```php
 <?php
@@ -19,7 +19,7 @@ namespace Phapi\Endpoint;
 class Blog extends Endpoint
 {
 
-  public function get()
+  public function get($postid) // $postid is an url param, ex: /blog/{postid:i}/
   {
     return [
       'Title' => 'A Phapi tutorial, part 1',
@@ -36,7 +36,7 @@ class Blog extends Endpoint
 All endpoints (that extends the Endpoint class) has the request, response and dependency injection container available: <code>$this->request</code>, <code>$this->response</code>, <code>$this->container</code>.
 
 ## Status code
-The default status code is 200. To change the status code by accessing the Response object:
+The default status code is 200. The status code can be changed by accessing the Response object and setting a new status code:
 
 ```php
 <?php
@@ -105,7 +105,7 @@ public function get()
 All HEAD requests are automatically handled by Endpoints by checking if a <code>get()</code> method is implemented. If it is implemented, it will call the <code>get()</code> method so that all headers are created but it will ignore the body since HEAD requests should not return a body.
 
 ## Options requests
-Endpoint contains functionality for handling OPTIONS requests by looking at the implemented methods and PHPDoc to set headers and generate a body. The method returns supported content types, allowed methods as well as API documentation (if documentation exists).
+Endpoints automatically contains functionality for handling OPTIONS requests by looking at the implemented methods and PHPDoc to set headers and generate a body. The method returns supported content types, allowed methods as well as API documentation (if documentation exists).
 
 Documenting the API is done by using PHPDoc and using tags that starts with @api.
 
