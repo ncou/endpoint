@@ -9,7 +9,7 @@ $ composer require phapi/endpoint:1.*
 ```
 
 ## Basic usage
-An endpoint contains methods for handling requests. If an endpoint should support GET requests a <code>get()</code> method must exist. Each method must return the content that should be the response body that is sent to the client. The content must be formatted as an array. [Serializers](http://phapi.github.io/serializers/introduction/) will then serialize the array to the correct format.
+An endpoint contains methods for handling requests. If an endpoint should support GET requests a <code>get()</code> method must exist. Each method must return the content that should be the response body that is sent to the client. The content must be formatted as an array. [Serializers](http://phapi.github.io/docs/serializers/introduction/) will then serialize the array to the correct format.
 
 ```php
 <?php
