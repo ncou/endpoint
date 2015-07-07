@@ -131,7 +131,7 @@ It's possible to do quite advanced documentation this way.
 *It might be slightly unusual to return a body on an OPTIONS request but this makes the API self-describing. It makes it possible to browse, use and look at the documentation of the API by actually using the API itself.*
 
 ## Phapi
-Endpoint is a Phapi package used by the [Phapi Framework](https://github.com/phapi/phapi).
+Endpoint is a Phapi package used by the [Phapi Framework](https://github.com/phapi/phapi-framework).
 
 ## License
 Endpoint is licensed under the MIT License - see the [license.md](https://github.com/phapi/endpoint/blob/master/license.md) file for details
