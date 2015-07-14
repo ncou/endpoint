@@ -1,4 +1,9 @@
 # Endpoint
+
+[![Build status](https://img.shields.io/travis/phapi/endpoint.svg?style=flat-square)](https://travis-ci.org/phapi/endpoint)
+[![Code Climate](https://img.shields.io/codeclimate/github/phapi/endpoint.svg?style=flat-square)](https://codeclimate.com/github/phapi/endpoint)
+[![Test Coverage](https://img.shields.io/codeclimate/coverage/github/phapi/endpoint.svg?style=flat-square)](https://codeclimate.com/github/phapi/endpoint/coverage)
+
 All successful requests (except when caching is used) will be routed and dispatched to an Endpoint that should handle the request and return a response with the requested content.
 
 ## Installation
